@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetFix - Jasa Setting MikroTik & Networking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        scroll-behavior: smooth;
+        .cart-badge { position: absolute; top: -5px; right: -10px; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+
+    <nav class="bg-slate-900 text-white p-4 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold tracking-tighter italic">clarizza.net</h1>
+            <ul class="hidden md:flex space-x-6 items-center">
+                <li><a href="#home" class="hover:text-blue-400">Beranda</a></li>
+                <li><a href="#layanan" class="hover:text-blue-400">Layanan</a></li>
+                <li><a href="#harga" class="hover:text-blue-400">Harga</a></li>
+                <li class="relative cursor-pointer" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span id="cart-count" class="cart-badge">0</span>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="home" class="bg-slate-800 text-white py-20 px-4 text-center">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Solusi Jaringan <span class="text-blue-400">Tanpa Lag</span></h2>
+            <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">Dari setting dasar hingga optimasi ISP tingkat lanjut. Pilih layanan Anda dan biarkan kami bekerja.</p>
+        </div>
+    </header>
+
+    <section id="layanan" class="py-16 container mx-auto px-4">
+        <h3 class="text-3xl font-bold text-center mb-10">Layanan Tambahan</h3>
+        <div class="grid md:grid-cols-4 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow hover:border-blue-500 border-2 border-transparent transition">
+                <i class="fas fa-user-shield text-blue-500 text-2xl mb-3"></i>
+                <h4 class="font-bold mb-2">VPN Remote</h4>
+                <p class="text-sm text-gray-600">Akses Winbox dari mana saja tanpa IP Publik.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow hover:border-blue-500 border-2 border-transparent transition">
+                <i class="fas fa-broadcast-tower text-blue-500 text-2xl mb-3"></i>
+                <h4 class="font-bold mb-2">Point to Point</h4>
+                <p class="text-sm text-gray-600">Tembak internet jarak jauh (Wireless PTP/PTMP).</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow hover:border-blue-500 border-2 border-transparent transition">
+                <i class="fas fa-server text-blue-500 text-2xl mb-3"></i>
+                <h4 class="font-bold mb-2">Tunneling L2TP/SSTP</h4>
+                <p class="text-sm text-gray-600">Menghubungkan kantor cabang dengan aman.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow hover:border-blue-500 border-2 border-transparent transition">
+                <i class="fas fa-code text-blue-500 text-2xl mb-3"></i>
+                <h4 class="font-bold mb-2">Scripting MikroTik</h4>
+                <p class="text-sm text-gray-600">Auto backup, auto reboot, dan monitoring bot Telegram.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="harga" class="bg-slate-100 py-16 px-4">
+        <div class="container mx-auto">
+            <h3 class="text-3xl font-bold text-center mb-12">Pilih Paket Anda</h3>
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col">
+                    <div class="p-8 text-center border-b">
+                        <h4 class="text-lg font-bold text-gray-500 uppercase">Paket Home</h4>
+                        <p class="text-4xl font-extrabold my-4">Rp 150.000</p>
+                        <p class="text-sm text-gray-500">Cocok untuk penggunaan pribadi/rumah</p>
+                    </div>
+                    <div class="p-8 flex-grow">
+                        <ul class="space-y-3 mb-8">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Konfigurasi Internet</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Firewall Standard</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> DNS Filtering</li>
+                        </ul>
+                        <button onclick="addToCart('Paket Home', 150000)" class="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition">+ Tambah ke Keranjang</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col border-4 border-blue-500 relative">
+                    <span class="absolute top-0 right-0 bg-blue-500 text-white px-4 py-1 text-xs font-bold uppercase rounded-bl-lg">Terpopuler</span>
+                    <div class="p-8 text-center border-b">
+                        <h4 class="text-lg font-bold text-gray-500 uppercase">Paket Warnet/Game</h4>
+                        <p class="text-4xl font-extrabold my-4">Rp 350.000</p>
+                        <p class="text-sm text-gray-500">Pisah Traffic Game & Browsing</p>
+                    </div>
+                    <div class="p-8 flex-grow">
+                        <ul class="space-y-3 mb-8">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Anti-Lag Priority</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Full Queue Tree</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Port Forwarding</li>
+                        </ul>
+                        <button onclick="addToCart('Paket Warnet', 350000)" class="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition">+ Tambah ke Keranjang</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col">
+                    <div class="p-8 text-center border-b">
+                        <h4 class="text-lg font-bold text-gray-500 uppercase">Paket RT/RW Net</h4>
+                        <p class="text-4xl font-extrabold my-4">Rp 500.000</p>
+                        <p class="text-sm text-gray-500">Hotspot Voucher & Manajemen User</p>
+                    </div>
+                    <div class="p-8 flex-grow">
+                        <ul class="space-y-3 mb-8">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Landing Page Custom</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Integrasi Mikhmon</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Limit Per Voucher</li>
+                        </ul>
+                        <button onclick="addToCart('Paket RT/RW Net', 500000)" class="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition">+ Tambah ke Keranjang</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="cart-modal" class="fixed inset-y-0 right-0 w-80 bg-white shadow-2xl z-[60] transform translate-x-full transition-transform duration-300">
+        <div class="p-6 h-full flex flex-col">
+            <div class="flex justify-between items-center border-b pb-4">
+                <h3 class="text-xl font-bold">Keranjang Anda</h3>
+                <button onclick="toggleCart()" class="text-gray-500 hover:text-red-500 text-2xl">&times;</button>
+            </div>
+            <div id="cart-items" class="flex-grow overflow-y-auto py-4">
+                <p class="text-gray-500 text-center">Keranjang masih kosong.</p>
+            </div>
+            <div class="border-t pt-4">
+                <div class="flex justify-between font-bold text-lg mb-4">
+                    <span>Total:</span>
+                    <span id="cart-total">Rp 0</span>
+                </div>
+                <button onclick="checkout()" class="w-full bg-green-500 text-white py-3 rounded-lg font-bold hover:bg-green-600 transition">Checkout via WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-slate-900 text-white py-8 text-center border-t border-gray-800">
+        <p>&copy; 2024 NetFix - Solusi Networking MikroTik</p>
+    </footer>
+
+    <script>
+        let cart = [];
+        const cartModal = document.getElementById('cart-modal');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartCount = document.getElementById('cart-count');
+        const cartTotal = document.getElementById('cart-total');
+
+        function toggleCart() {
+            cartModal.classList.toggle('translate-x-full');
+        }
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCart();
+            if(cartModal.classList.contains('translate-x-full')) toggleCart();
+        }
+
+        function updateCart() {
+            cartCount.innerText = cart.length;
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="text-gray-500 text-center">Keranjang masih kosong.</p>';
+            } else {
+                cart.forEach((item, index) => {
+                    total += item.price;
+                    cartItemsContainer.innerHTML += `
+                        <div class="flex justify-between items-center mb-3 bg-gray-50 p-2 rounded">
+                            <span class="text-sm font-medium">${item.name}</span>
+                            <div class="flex items-center">
+                                <span class="text-sm mr-3 font-bold">Rp ${item.price.toLocaleString()}</span>
+                                <button onclick="removeFromCart(${index})" class="text-red-500"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+            cartTotal.innerText = `Rp ${total.toLocaleString()}`;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function checkout() {
+            if (cart.length === 0) return alert("Keranjang kosong!");
+            
+            let message = "Halo NetFix, saya ingin memesan jasa berikut:%0A%0A";
+            cart.forEach(item => {
+                message += `- ${item.name} (Rp ${item.price.toLocaleString()})%0A`;
+            });
+            message += `%0A*Total: ${cartTotal.innerText}*`;
+            
+            window.open(`https://wa.me/628123456789?text=${message}`, '_blank');
+        }
+    </script>
+</body>
+</html>
