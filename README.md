@@ -1,2 +1,0 @@
-# clarizzanet
-jasa seting mikrotik
